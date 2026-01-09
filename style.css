@@ -1,5 +1,5 @@
 /* =========================
-   Reset
+   Base (배경 설정)
    ========================= */
 * {
   margin: 0;
@@ -7,102 +7,72 @@
   box-sizing: border-box;
 }
 
-/* =========================
-   Base
-   ========================= */
 body {
-   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-   background: #f0f2f5;
-   color: #000000;
-   line-height: 1.6;
-   min-height: 100vh;
-   display: flex;       /* 2. 화면 중앙 정렬을 위한 설정 */
-   align-items: center;
-   justify-content: center;
-   
-   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-   color: #000000;
-   line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-  color: #000;
-}
-
-a:hover {
-  opacity: 0.6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f0f2f5; /* 전체 배경색 (이미지 톤) */
+  color: #000000;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px; /* 상하 여백 */
 }
 
 /* =========================
-   Layout
+   Layout (둥근 모달형 컨테이너)
    ========================= */
 .container {
-   width: 100%;
-   max-width: 600px;    /* 모달 너비 조정 */
-   margin: 0 auto;
-   padding: 60px 40px;
-   background: #ffffff; /* 3. 컨테이너 자체를 흰색 배경으로 */
-   border-radius: 50px; /* 4. 아주 둥근 모서리 */
-   box-shadow: 0 15px 35px rgba(0,0,0,0.05); /* 부드러운 그림자 */
-   display: flex;
-   flex-direction: column;
-   align-items: center; /* 내부 요소 중앙 정렬 */
-   position: relative;
-   z-index: 10;
-/* 
-max-width: 1200px;
-margin: 80px auto;
-padding: 0 20px;
-*/
+  width: 100%;
+  max-width: 1100px;    /* 너무 넓지 않게 조정 */
+  background: #ffffff;  /* 흰색 바탕 */
+  padding: 60px 50px;   /* 내부 여백 */
+  border-radius: 60px;  /* 아주 둥근 모서리 */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04); /* 부드러운 그림자 */
+  margin: 0 auto;
 }
 
 nav {
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+  text-align: left; /* 또는 center */
 }
 
 nav a {
-  margin-right: 20px;
+  margin-right: 25px;
   font-size: 14px;
+  font-weight: 600;
 }
 
 h1 {
-  font-size: 20px;
-  font-weight: normal;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 15px;
-  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  letter-spacing: -0.02em;
 }
 
 /* =========================
-   work / Project Grid
+   work / Project Grid (그리드 최적화)
    ========================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(3, 1fr); /* 3열 유지 */
+  gap: 40px 30px; /* 행과 열 사이 간격 */
 }
 
-.grid img {
-  width: 100%;
-  height: 520px;
-  object-fit: cover;
-}
-
-/* =========================
-   work Cover Thumbnail
-   ========================= */
 .ex-card {
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.ex-card:hover {
+  transform: translateY(-5px); /* 호버 시 살짝 들림 */
 }
 
 .ex-thumb {
   width: 100%;
-  aspect-ratio: 3 / 4; /* 포스터 비율 통일 (핵심) */
+  aspect-ratio: 3 / 4; /* 포스터 비율 통일 */
+  border-radius: 12px; /* 이미지 모서리도 살짝 둥글게 (선택사항) */
   overflow: hidden;
+  background: #f9f9f9;
 }
 
 .ex-thumb img {
@@ -112,55 +82,31 @@ p {
 }
 
 .caption {
-  font-size: 14px;
-  margin-top: 10px;
+  font-size: 13px;
+  margin-top: 15px;
+  line-height: 1.5;
+  color: #333;
+  word-break: keep-all; /* 단어 단위 줄바꿈 */
 }
 
 /* =========================
-   Exhibition Detail Layout
-   ========================= */
-.detail {
-  display: grid;
-  grid-template-columns: 2fr 3fr; /* 40 : 60 */
-  gap: 60px;
-}
-
-/* Left: image strip */
-.detail-images img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 10px;
-  cursor: zoom-in;
-}
-
-/* Right: text column */
-.detail-text {
-  max-width: 520px;
-  align-self: start;
-}
-
-.detail-text {
-  max-width: 600px;
-  align-self: start;
-  line-height: 1.9;       /* 행간 */
-  letter-spacing: 0.03em; /* 자간 */
-}
-
-/* =========================
-   Mobile
+   Mobile (모바일 최적화)
    ========================= */
 @media (max-width: 900px) {
-  .detail {
-    grid-template-columns: 1fr;
-  }
-
-  .detail-text {
-    max-width: none;
+  .container {
+    padding: 40px 25px;
+    border-radius: 40px; /* 모바일에서는 조금 덜 둥글게 */
   }
 
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr); /* 패드/모바일 2열 */
+    gap: 25px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr; /* 작은 폰 1열 */
   }
 }
 
