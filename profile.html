@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OHYUNYOUNG</title>
+  <style>
+    /* 1. 기본 스타일 리셋 및 배경 설정 */
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f9fa; /* 밝고 깨끗한 배경색 */
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      overflow: hidden; /* 스티커가 화면 밖으로 나갈 때 스크롤 방지 */
+    }
+
+    /* 2. 전체 컨테이너 (중앙 정렬) */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      z-index: 10;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    /* 3. 상단 네비게이션 */
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: opacity 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 0.6;
+    }
+
+    /* 4. 흰색 둥근 모달창 (말풍선) */
+    .speech-bubble {
+      position: relative;
+      background: #ffffff;
+      padding: 50px 40px;
+      border-radius: 60px; /* 이미지처럼 매우 둥근 형태 */
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06); /* 부드러운 그림자 */
+      text-align: center;
+      width: 80%;
+      transition: transform 0.3s ease;
+    }
+
+    .speech-bubble p {
+      margin: 8px 0;
+      font-size: 1.1rem;
+      color: #222;
+      word-break: keep-all;
+    }
+
+    /* 5. 이모지 버튼 & 토스트 알림 */
+    .bubble-emoji-btn {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      margin-top: 20px;
+      outline: none;
+      transition: transform 0.2s;
+    }
+
+    .bubble-emoji-btn:active {
+      transform: scale(0.9);
+    }
+
+    .sticker-toast {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, top 0.3s;
+    }
+
+    .sticker-toast.show {
+      opacity: 1;
+      top: -60px;
+    }
+
+    .clean-btn {
+      position: absolute;
+      right: 30px;
+      bottom: 25px;
+      background: #f1f1f1;
+      border: none;
+      border-radius: 15px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: #999;
+      transition: background 0.2s;
+    }
+
+    .clean-btn:hover {
+      background: #e5e5e5;
+      color: #666;
+    }
+
+    /* 6. 연락처 정보 */
+    .contact-info {
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .contact-info p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #888;
+    }
+
+    .contact-info a {
+      color: #888;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* 7. 애니메이션용 이모지 스타일 */
+    .emoji-pop {
+      position: fixed;
+      font-size: 2.5rem;
+      user-select: none;
+      z-index: 100;
+      cursor: grab;
+    }
+
+    .emoji-pop:active {
+      cursor: grabbing;
+    }
+
+    /* 클릭 시 솟아오르는 애니메이션 */
+    .emoji-float {
+      pointer-events: none;
+      animation: floatUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.5); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-120px) translateX(var(--drift-x)) scale(1.2); opacity: 0; }
+    }
+
+    /* 스티커 모드 활성화 시 (서서히 나타남) */
+    .emoji-sticker {
+      animation: appear 0.5s ease-out forwards;
+    }
+
+    @keyframes appear {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <a href="contact.html">연락</a>
+      <a href="work.html">작업</a>
+    </nav>
+
+    <div class="speech-bubble">
+      <div class="sticker-toast" aria-live="polite">sticker mode on! ✨</div>
+      
+      <p>안녕하세요. 오윤영입니다.</p>
+      <p>전시를 기획하고 있습니다.</p>
+      <p>방문해 주셔서 감사합니다.</p>
+
+      <button class="bubble-emoji-btn" type="button" aria-label="smile">☺</button>
+
+      <button class="clean-btn" type="button">비우기</button>
+    </div>
+
+    <div class="contact-info">
+      <p>이메일: <a href="mailto:560arte@gmail.com">560arte@gmail.com</a></p>
+      <p>인스타: <a href="https://instagram.com/560_oo" target="_blank" rel="noopener">@560_oo</a></p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const btn = document.querySelector(".bubble-emoji-btn");
+      const bubble = document.querySelector(".speech-bubble");
+      const toast = document.querySelector(".sticker-toast");
+      const cleanBtn = document.querySelector(".clean-btn");
+      if (!btn) return;
+
+      let clickCount = 0;
+      let stickerMode = false;
+
+      const emojis = [
+        "🍀","✨","💛","🌿","🫧","⭐","💫","🐈","🦕","🔥","🌈","🏆","🎁","🎉","💕","💥","💡","💣","☃️","🍿",
+        "🌙","🌞","☁️","🌧️","🌊","⚡","🕊️","🐾","🗨️","🧡","🤍","🩶","💙","💜","🖤"
+      ];
+
+      function showToast() {
+        if (!toast) return;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 1600);
+      }
+
+      function spawnEmoji(isSticker){
+        const rect = btn.getBoundingClientRect();
+        const el = document.createElement("span");
+        
+        el.className = "emoji-pop " + (isSticker ? "emoji-sticker" : "emoji-float");
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+        const drift = (Math.random() * 40 - 20);
+        el.style.setProperty("--drift-x", drift + "px");
+
+        // 위치 분산
+        const spread = isSticker ? 60 : 0;
+        const randX = (Math.random() * 2 - 1) * spread;
+        const randY = (Math.random() * 2 - 1) * spread;
+
+        let startX = rect.left + rect.width / 2 + randX - 20; // 센터 보정
+        let startY = rect.top + rect.height / 2 + randY - 20;
+
+        el.style.left = startX + "px";
+        el.style.top = startY + "px";
+
+        document.body.appendChild(el);
+
+        if (!isSticker) {
+          el.addEventListener("animationend", () => el.remove());
+        }
+      }
+
+      btn.addEventListener("click", () => {
+        clickCount += 1;
+        if (clickCount === 7 && !stickerMode) {
+          stickerMode = true;
+          showToast();
+        }
+        spawnEmoji(stickerMode);
+      });
+
+      if (cleanBtn) {
+        cleanBtn.addEventListener("click", () => {
+          document.querySelectorAll(".emoji-sticker").forEach(el => el.remove());
+        });
+      }
+
+      // --- 드래그 로직 (수정됨) ---
+      let draggingEl = null;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      document.addEventListener("pointerdown", (e) => {
+        const t = e.target;
+        if (!t.classList.contains("emoji-sticker")) return;
+
+        draggingEl = t;
+        const left = parseFloat(draggingEl.style.left);
+        const top = parseFloat(draggingEl.style.top);
+
+        offsetX = e.clientX - left;
+        offsetY = e.clientY - top;
+        
+        draggingEl.style.zIndex = 1000; // 드래그 중인 것을 가장 위로
+        draggingEl.setPointerCapture(e.pointerId);
+      });
+
+      document.addEventListener("pointermove", (e) => {
+        if (!draggingEl) return;
+        let x = e.clientX - offsetX;
+        let y = e.clientY - offsetY;
+        
+        draggingEl.style.left = x + "px";
+        draggingEl.style.top = y + "px";
+      });
+
+      document.addEventListener("pointerup", () => {
+        if(draggingEl) draggingEl.style.zIndex = 100;
+        draggingEl = null;
+      });
+    })();
+  </script>
+</body>
+</html>
