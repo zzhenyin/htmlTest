@@ -208,4 +208,53 @@
         el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
         const drift = (Math.random() * 40 - 20);
-        el.style.setProperty("--drift-x",
+        el.style.setProperty("--drift-x", drift + "px");
+
+        const spread = isSticker ? 50 : 0;
+        const x = rect.left + rect.width / 2 + (Math.random() * 2 - 1) * spread - 20;
+        const y = rect.top + rect.height / 2 + (Math.random() * 2 - 1) * spread - 20;
+
+        el.style.left = x + "px";
+        el.style.top = y + "px";
+        document.body.appendChild(el);
+
+        if (!isSticker) el.addEventListener("animationend", () => el.remove());
+      }
+
+      btn.addEventListener("click", () => {
+        clickCount++;
+        if (clickCount === 7 && !stickerMode) {
+          stickerMode = true;
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 1500);
+        }
+        spawnEmoji(stickerMode);
+      });
+
+      cleanBtn.addEventListener("click", () => {
+        document.querySelectorAll(".emoji-sticker").forEach(e => e.remove());
+      });
+
+      // 드래그 로직
+      let dragTarget = null;
+      let offX = 0, offY = 0;
+
+      document.addEventListener("pointerdown", e => {
+        if (!e.target.classList.contains("emoji-sticker")) return;
+        dragTarget = e.target;
+        offX = e.clientX - parseFloat(dragTarget.style.left);
+        offY = e.clientY - parseFloat(dragTarget.style.top);
+        dragTarget.setPointerCapture(e.pointerId);
+      });
+
+      document.addEventListener("pointermove", e => {
+        if (!dragTarget) return;
+        dragTarget.style.left = (e.clientX - offX) + "px";
+        dragTarget.style.top = (e.clientY - offY) + "px";
+      });
+
+      document.addEventListener("pointerup", () => dragTarget = null);
+    })();
+  </script>
+</body>
+</html>
