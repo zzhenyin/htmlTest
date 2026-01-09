@@ -33,16 +33,17 @@ body {
 
 /* 모든 링크의 기본 효과 제거 */
 a {
-  text-decoration: none; /* 밑줄 제거 */
-  color: inherit;        /* 부모 요소(p, div 등)의 글자색을 그대로 따름 */
-  cursor: pointer;       /* 마우스 포인터 모양은 유지 (클릭 가능함을 표시) */
+   text-decoration: none; /* 밑줄 제거 */
+   cursor: pointer;       /* 마우스 포인터 모양은 유지 (클릭 가능함을 표시) */
+   color: #000;
 }
 
 /* 방문한 적이 있거나 클릭 중일 때도 색상이 변하지 않게 고정 */
 a:visited, a:hover, a:active {
-  color: inherit;
+  opacity: 0.6;
   text-decoration: none;
 }
+
 nav {
   margin-bottom: 50px;
   text-align: left; /* 또는 center */
