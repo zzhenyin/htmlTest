@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>profile.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d5b778;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bababa;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+profile.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">html</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">lang</span><span class="s3">=&quot;ko&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;head&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">charset</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">name</span><span class="s3">=&quot;viewport&quot; </span><span class="s2">content</span><span class="s3">=&quot;width=device-width, initial-scale=1.0&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title&gt;</span><span class="s1">My Profile</span><span class="s0">&lt;/title&gt;</span>
+    <span class="s0">&lt;style&gt;</span>
+        <span class="s1">/* 배경 및 기본 폰트 설정 */</span>
+        <span class="s1">body {</span>
+            <span class="s1">font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;</span>
+            <span class="s1">background-color: #f4f7f6;</span>
+            <span class="s1">display: flex;</span>
+            <span class="s1">justify-content: center;</span>
+            <span class="s1">align-items: center;</span>
+            <span class="s1">height: 100vh;</span>
+            <span class="s1">margin: 0;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">/* 프로필 카드 디자인 */</span>
+        <span class="s1">.profile-card {</span>
+            <span class="s1">background: white;</span>
+            <span class="s1">width: 350px;</span>
+            <span class="s1">padding: 30px;</span>
+            <span class="s1">border-radius: 20px;</span>
+            <span class="s1">box-shadow: 0 10px 25px rgba(0,0,0,0.1);</span>
+            <span class="s1">text-align: center;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">/* 프로필 이미지 (임시 이미지 사용) */</span>
+        <span class="s1">.profile-img {</span>
+            <span class="s1">width: 120px;</span>
+            <span class="s1">height: 120px;</span>
+            <span class="s1">border-radius: 50%;</span>
+            <span class="s1">object-fit: cover;</span>
+            <span class="s1">border: 4px solid #e0e0e0;</span>
+            <span class="s1">margin-bottom: 15px;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">h1 {</span>
+            <span class="s1">font-size: 24px;</span>
+            <span class="s1">color: #333;</span>
+            <span class="s1">margin-bottom: 5px;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">p.job {</span>
+            <span class="s1">color: #666;</span>
+            <span class="s1">font-size: 14px;</span>
+            <span class="s1">margin-bottom: 20px;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">/* 자기소개 텍스트 */</span>
+        <span class="s1">.bio {</span>
+            <span class="s1">font-size: 15px;</span>
+            <span class="s1">line-height: 1.6;</span>
+            <span class="s1">color: #444;</span>
+            <span class="s1">margin-bottom: 25px;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">/* 소셜 링크 버튼 */</span>
+        <span class="s1">.links a {</span>
+            <span class="s1">display: inline-block;</span>
+            <span class="s1">text-decoration: none;</span>
+            <span class="s1">color: white;</span>
+            <span class="s1">background-color: #333;</span>
+            <span class="s1">padding: 10px 20px;</span>
+            <span class="s1">border-radius: 25px;</span>
+            <span class="s1">font-size: 14px;</span>
+            <span class="s1">transition: background 0.3s;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">.links a:hover {</span>
+            <span class="s1">background-color: #555;</span>
+        <span class="s1">}</span>
+    <span class="s0">&lt;/style&gt;</span>
+<span class="s0">&lt;/head&gt;</span>
+<span class="s0">&lt;body&gt;</span>
+
+<span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;profile-card&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;img </span><span class="s2">src</span><span class="s3">=&quot;https://chatgpt.com/backend-api/estuary/content?id=file_000000006f5c61f88ba41b9e7dd236ce&amp;ts=491101&amp;p=fs&amp;cid=1&amp;sig=54fe6f48c7edfb84a2aee0c298f9b124dd4cc5dad78245f8e21ed2550759c405&amp;v=0&quot; </span><span class="s2">alt</span><span class="s3">=&quot;프로필 사진&quot; </span><span class="s2">class</span><span class="s3">=&quot;profile-img&quot;</span><span class="s0">&gt;</span>
+
+    <span class="s0">&lt;h1&gt;</span><span class="s1">오구름</span><span class="s0">&lt;/h1&gt;</span>
+    <span class="s0">&lt;p </span><span class="s2">class</span><span class="s3">=&quot;job&quot;</span><span class="s0">&gt;</span><span class="s1">Cute Cat</span><span class="s0">&lt;/p&gt;</span>
+
+    <span class="s0">&lt;p </span><span class="s2">class</span><span class="s3">=&quot;bio&quot;</span><span class="s0">&gt;</span>
+        <span class="s1">야옹야옹.</span><span class="s0">&lt;br&gt;</span>
+        <span class="s1">둠칫냐옹</span>
+    <span class="s0">&lt;/p&gt;</span>
+
+    <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;links&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;a </span><span class="s2">href</span><span class="s3">=&quot;https://github.com&quot; </span><span class="s2">target</span><span class="s3">=&quot;_blank&quot;</span><span class="s0">&gt;</span><span class="s1">GitHub 방문하기</span><span class="s0">&lt;/a&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+<span class="s0">&lt;/div&gt;</span>
+
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;/html&gt;</span></pre>
+</body>
+</html>
