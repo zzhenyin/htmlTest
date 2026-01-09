@@ -1,0 +1,417 @@
+/* =========================
+   Reset
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   Base
+   ========================= */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f4f7; /* 부드러운 회색 배경 */
+  font-family: 'Pretendard', sans-serif;
+  overflow: hidden;
+  
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #000000;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+/* =========================
+   Layout
+   ========================= */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+nav {
+  margin-bottom: 60px;
+}
+
+nav a {
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   work / Project Grid
+   ========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.grid img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+
+/* =========================
+   work Cover Thumbnail
+   ========================= */
+.ex-card {
+  display: block;
+}
+
+.ex-thumb {
+  width: 100%;
+  aspect-ratio: 3 / 4; /* 포스터 비율 통일 (핵심) */
+  overflow: hidden;
+}
+
+.ex-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* =========================
+   Exhibition Detail Layout
+   ========================= */
+.detail {
+  display: grid;
+  grid-template-columns: 2fr 3fr; /* 40 : 60 */
+  gap: 60px;
+}
+
+/* Left: image strip */
+.detail-images img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+  cursor: zoom-in;
+}
+
+/* Right: text column */
+.detail-text {
+  max-width: 520px;
+  align-self: start;
+}
+
+.detail-text {
+  max-width: 600px;
+  align-self: start;
+  line-height: 1.9;       /* 행간 */
+  letter-spacing: 0.03em; /* 자간 */
+}
+
+/* =========================
+   Mobile
+   ========================= */
+@media (max-width: 900px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-text {
+    max-width: none;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Lightbox (Image Zoom)
+   ========================= */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+}
+
+/* 이미지 + 화살표 기준 박스 */
+.lb-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* 확대 이미지 */
+#lightbox img {
+  max-width: 70vw;
+  max-height: 80vh;
+  display: block;
+}
+
+/* 화살표 공통 */
+#lightbox button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 32px;
+  padding: 16px;
+  cursor: pointer;
+
+  user-select: none;
+}
+
+/* 이미지 기준 왼쪽 */
+.lb-prev {
+  left: -48px;
+}
+
+/* 이미지 기준 오른쪽 */
+.lb-next {
+  right: -48px;
+}
+
+#lightbox button:hover {
+  opacity: 0.6;
+}
+
+/* =========================
+   Contact: Speech Bubble
+   ========================= */
+.speech-bubble {
+  position: relative;
+  width: fit-content;
+  max-width: 520px;
+  padding: 18px 20px;
+  border: 2px solid #808080;
+  border-radius: 15px;
+  background: #fff;
+  line-height: 1.4;
+  margin-top: 24px;
+}
+
+.speech-bubble p {
+  margin: 0;
+}
+.speech-bubble p + p {
+  margin-top: 8px;
+}
+
+/* 꼬리(테두리) */
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  right: -18px;
+  top: 70%;
+  transform: translateY(-50%);
+  border-width: 14px 0 14px 18px;
+  border-style: solid;
+  border-color: transparent transparent transparent #808080;
+}
+
+/* 꼬리(안쪽) */
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  right: -15px;
+  top: 70%;
+  transform: translateY(-50%);
+  border-width: 12px 0 12px 15px;
+  border-style: solid;
+  border-color: transparent transparent transparent #fff;
+}
+
+/* 고정 이모지(클릭 가능한 버튼) */
+.bubble-emoji-btn {
+  position: absolute;
+  right: -52px;
+  top: 70%;
+  transform: translateY(-50%);
+  font-size: 25px;
+  line-height: 1;
+
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bubble-emoji-btn:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+/* 클릭할 때마다 생기는 이모지 공통 */
+.emoji-pop{
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+/* 사라지는 모드(블러 OK) */
+.emoji-float{
+  pointer-events: none;
+  animation: floatUp 800ms ease-out forwards;
+}
+
+/* 스티커 모드(블러 X) */
+.emoji-sticker{
+  pointer-events: auto;
+  user-select: none;
+  cursor: grab;
+  z-index: 99999;
+
+  animation: floatUpSticker 650ms ease-out forwards; /* 스티커 전용 */
+}
+
+.emoji-sticker:active{ cursor: grabbing; }
+
+/* 위로 올라가며 사라짐 + 블러 */
+@keyframes floatUp{
+  0%   { transform: translate(-50%, -50%) translate(0, 0) scale(1); opacity: 0.9; filter: blur(0px); }
+  100% { transform: translate(-50%, -50%) translate(var(--drift-x, 0px), -70px) scale(1.15); opacity: 0; filter: blur(1.5px); }
+}
+
+/* 스티커: 올라가지만 '선명' 유지 */
+@keyframes floatUpSticker{
+  0%   { transform: translate(-50%, -50%) translate(0, 0) scale(1); opacity: 1; filter: none; }
+  100% { transform: translate(-50%, -50%) translate(var(--drift-x, 0px), -70px) scale(1.12); opacity: 1; filter: none; }
+}
+
+
+.secret-msg {
+  margin-top: 18px;
+  max-width: 520px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fff;
+
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.secret-msg.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 7번째에 잠깐 뜨는 문구 스티커모드on */
+.sticker-toast {
+  position: absolute;
+  right: -160px;
+  top: calc(70% - 25px);
+  transform: translateY(-50%);
+  font-size: 12px;
+  line-height: 1;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1200ms ease, transform 600ms ease;
+}
+
+.sticker-toast.show {
+  opacity: 1;
+  transform: translateY(-50%) translateY(-6px);
+}
+
+/* 스티커 모드일 때만 보이는 비우기 버튼 */
+.clean-btn {
+  position: absolute;
+  right: -800px;
+  top: calc(70% + -50px);
+  transform: translateY(-50%);
+  font-size: 12px;
+  padding: 8px 10px;
+  border: 1px solid #808080;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+
+  display: none; /* 기본은 숨김 */
+}
+
+.clean-btn:hover {
+  opacity: 0.7;
+}
+
+/* on */
+.speech-bubble.sticker-on .clean-btn {
+  display: inline-block;
+}
+
+/* 사라지는 이모지(드래그 불필요) */
+.emoji-float {
+  pointer-events: none;
+}
+
+/* 스티커(드래그 가능) */
+.emoji-sticker {
+  pointer-events: auto;
+  user-select: none;
+  cursor: grab;
+  z-index: 99999;
+}
+
+.emoji-sticker:active {
+  cursor: grabbing;
+}
+
+.emoji-pop.emoji-sticker{
+  font-size: 20px;
+}
